@@ -1,14 +1,42 @@
+# http запросы для тестирования
+#- 1 - показывает ошибку, т.к. нет авторизации
+#- 2 - вывод списка users
+#- 3 - процесс авторизации и получение token
+#- 4 - добавление нового user. Добавится если token указан от admin. Если token от user - ошибка
+
+#1
 GET http://localhost:8080/api/v1/developers
 Content-Type: application/json
 
 ###
 
+#2
+GET http://localhost:8080/api/v1/developers
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2MjQ5NTgxMzgsImV4cCI6MTYyNTU2MjkzOH0.Uk05aNGJObnJCZNvY1FyB3YGz8TsTucNUqI1b4McMYo
+Content-Type: application/json
+
+###
+
+#3
 POST http://localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email":"user@gmail.com",
-  "password":"user"
+  "email":"ford@gmail.com",
+  "password":"ford"
+}
+
+###
+
+#4
+POST http://localhost:8080/api/v1/developers
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2MjQ5NTgxMzgsImV4cCI6MTYyNTU2MjkzOH0.Uk05aNGJObnJCZNvY1FyB3YGz8TsTucNUqI1b4McMYo
+Content-Type: application/json
+
+{
+  "id": 5,
+  "firstName": "Inna",
+  "lastName": "Innovna"
 }
 
 ###
